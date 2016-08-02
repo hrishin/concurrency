@@ -20,12 +20,13 @@ public class Captain {
 
     public synchronized void imDone() {
         index = (index == schedule.size()-1) ? 0 : index+1;
+        notifyAll();
     }
 
     public synchronized void canI(String name) {
         while(schedule.get(index) != name) {
             try {
-                wait(500);
+                wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

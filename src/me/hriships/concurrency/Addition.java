@@ -17,9 +17,9 @@ public class Addition implements Runnable{
     @Override
     public void run() {
         for (int i = 0; i <  limit; i++) {
-            captain.canI("t2");
+            captain.canI("t3");
             total += i;
-            System.out.print("A:[" + total + "]");
+            System.out.print("[A:" + total + "]");
             captain.imDone();
         }
     }
