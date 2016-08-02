@@ -5,10 +5,10 @@ package me.hriships.concurrency;
  */
 public class Addition implements Runnable{
     private int limit;
-    private Captain captain;
+    private Scheduler captain;
     private int total;
 
-    public Addition(int limit, Captain captain) {
+    public Addition(int limit, Scheduler captain) {
         this.limit = limit;
         this.total = 0;
         this.captain = captain;

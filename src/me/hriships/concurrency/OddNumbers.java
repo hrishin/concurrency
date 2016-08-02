@@ -6,9 +6,9 @@ package me.hriships.concurrency;
 public class OddNumbers implements Runnable {
 
     private int limit;
-    private Captain captain;
+    private Scheduler captain;
 
-    public OddNumbers(int limit, Captain captain) {
+    public OddNumbers(int limit, Scheduler captain) {
         this.limit = limit;
         this.captain = captain;
         captain.register(this);

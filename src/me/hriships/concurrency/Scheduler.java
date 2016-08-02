@@ -6,13 +6,13 @@ import java.util.List;
 /**
  * Created by administrator on 2/8/16.
  */
-public class Captain {
+public class Scheduler {
 
     private List<Runnable> schedule;
     private int index;
     private Runnable currentTask;
 
-    public Captain() {
+    public Scheduler() {
         schedule = new LinkedList<Runnable>();
         index = 0;
     }

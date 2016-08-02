@@ -1,10 +1,8 @@
 package me.hriships.concurrency;
 
-import java.util.concurrent.TimeUnit;
-
 public class Main {
     public static void main(String args[]) throws InterruptedException {
-        Captain captain = new Captain();
+        Scheduler captain = new Scheduler();
 
         EvenNumbers evenPrinter = new EvenNumbers(100, captain);
         OddNumbers oddPrinter = new OddNumbers(100, captain);

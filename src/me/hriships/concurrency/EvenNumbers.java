@@ -5,9 +5,9 @@ package me.hriships.concurrency;
  */
 public class EvenNumbers implements Runnable {
     private int limit;
-    private Captain captain;
+    private Scheduler captain;
 
-    public EvenNumbers(int limit, Captain captain) {
+    public EvenNumbers(int limit, Scheduler captain) {
         this.limit = limit;
         this.captain = captain;
         captain.register(this);
