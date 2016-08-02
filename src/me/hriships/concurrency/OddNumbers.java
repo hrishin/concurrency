@@ -11,12 +11,13 @@ public class OddNumbers implements Runnable {
     public OddNumbers(int limit, Captain captain) {
         this.limit = limit;
         this.captain = captain;
+        captain.register(this);
     }
 
     @Override
     public void run() {
         for(int i =1; i < limit; i=i+2) {
-            captain.canI("t2");
+            captain.canI(this);
             System.out.print("[" + i + "]");
             captain.imDone();
         }

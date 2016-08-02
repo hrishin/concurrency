@@ -12,12 +12,13 @@ public class Addition implements Runnable{
         this.limit = limit;
         this.total = 0;
         this.captain = captain;
+        captain.register(this);
     }
 
     @Override
     public void run() {
         for (int i = 0; i <  limit; i++) {
-            captain.canI("t3");
+            captain.canI(this);
             total += i;
             System.out.print("[A:" + total + "]");
             captain.imDone();
