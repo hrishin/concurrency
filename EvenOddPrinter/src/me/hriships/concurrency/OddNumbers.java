@@ -6,20 +6,19 @@ package me.hriships.concurrency;
 public class OddNumbers implements Runnable {
 
     private int limit;
-    private Scheduler captain;
+    private Coordinater coordinater;
 
-    public OddNumbers(int limit, Scheduler captain) {
+    public OddNumbers(int limit, Coordinater coordinater) {
         this.limit = limit;
-        this.captain = captain;
-        captain.register(this);
+        this.coordinater = coordinater;
     }
 
     @Override
     public void run() {
-        for(int i =1; i < limit; i=i+2) {
-            captain.canI(this);
+        for(int i =1; i <= limit; i=i+2) {
+            coordinater.canResume(Thread.currentThread().getName());
             System.out.print("[" + i + "]");
-            captain.imDone();
+            coordinater.taskDone();
         }
     }
 }

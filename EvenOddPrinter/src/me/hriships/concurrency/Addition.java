@@ -5,23 +5,23 @@ package me.hriships.concurrency;
  */
 public class Addition implements Runnable{
     private int limit;
-    private Scheduler captain;
-    private int total;
+    private Coordinater coordinater;
+    int total;
 
-    public Addition(int limit, Scheduler captain) {
+    public Addition(int limit, Coordinater coordinater) {
         this.limit = limit;
         this.total = 0;
-        this.captain = captain;
-        captain.register(this);
+        this.coordinater = coordinater;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i <  limit; i++) {
-            captain.canI(this);
+        for (int i = 0; i <= limit/2; i++) {
+            coordinater.canResume(Thread.currentThread().getName());
             total += i;
             System.out.print("[A:" + total + "]");
-            captain.imDone();
+            coordinater.taskDone();
         }
+
     }
 }

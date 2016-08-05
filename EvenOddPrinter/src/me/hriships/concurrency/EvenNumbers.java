@@ -5,20 +5,19 @@ package me.hriships.concurrency;
  */
 public class EvenNumbers implements Runnable {
     private int limit;
-    private Scheduler captain;
+    private Coordinater coordinater;
 
-    public EvenNumbers(int limit, Scheduler captain) {
+    public EvenNumbers(int limit, Coordinater coordinater) {
         this.limit = limit;
-        this.captain = captain;
-        captain.register(this);
+        this.coordinater = coordinater;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i <  limit; i=i+2) {
-            captain.canI(this);
+        for (int i = 0; i <= limit; i=i+2) {
+            coordinater.canResume(Thread.currentThread().getName());
             System.out.print("[" + i + "]");
-            captain.imDone();
+            coordinater.taskDone();
         }
     }
 }
