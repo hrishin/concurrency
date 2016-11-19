@@ -15,9 +15,11 @@ public class SimpleCoordinator implements Coordinater {
     }
 
     @Override
-    public synchronized void canResume(String taskName) {
-        while(!currentTask.getName().equalsIgnoreCase(taskName)) {
-            holdCurrentThread();
+    public void canResume(String taskName) {
+        synchronized (this) {
+            while (!currentTask.getName().equalsIgnoreCase(taskName)) {
+                holdCurrentThread();
+            }
         }
     }
 
@@ -30,9 +32,11 @@ public class SimpleCoordinator implements Coordinater {
     }
 
     @Override
-    public synchronized void taskDone() {
-        scheduleNextTask();
-        notifyAll();
+    public void taskDone() {
+        synchronized (this) {
+            scheduleNextTask();
+            notifyAll();
+        }
     }
 
     private void scheduleNextTask() {
@@ -41,19 +45,21 @@ public class SimpleCoordinator implements Coordinater {
     }
 
     private void enqueueCurrentTask() {
-        if(currentTask.isAlive()) {
+        if (currentTask.isAlive()) {
             schedule.add(currentTask);
         }
     }
 
     private void pickNextTask() {
-        currentTask = schedule.remove();
+        currentTask = schedule.poll();
     }
 
-    public synchronized void register(Thread task) {
-        schedule.add(task);
-        if(currentTask == null)
-            pickNextTask();
+    public void register(Thread task) {
+        synchronized (this) {
+            schedule.add(task);
+            if (currentTask == null)
+                pickNextTask();
+        }
     }
 
 }
